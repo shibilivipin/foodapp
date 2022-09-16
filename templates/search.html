@@ -1,0 +1,75 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>Sislaf</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'hm/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+
+<style>
+  .abcd{
+    height : 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+ 
+</style>
+
+</head>
+<body id="top">
+
+
+
+<div class="wrapper row3" style="padding-left: 250px;">
+  <main class="hoc container clear">
+    <!-- main body -->
+    <!-- ################################################################################################ -->
+    <section id="introblocks">
+      <ul class="nospace group btmspace-80">
+<!-- fooooooooooooooor looooooooooooooooooooooop -->
+
+      {% for i in pr %}
+    
+        <li class="one_third">
+          <figure><a class="imgover" href="{{i.get_url}}"><img src="{{i.img.url}}" alt="" style="height:350px; width:400px;"></a>
+            <figcaption>
+              <h6 class="heading">{{i.name}}</h6>
+              <p>{{i.desc|truncatechars:25}}.</p>
+              <!-- ------OR------ -->
+              <!-- <p>{{i.desc|truncatewords:25}}.</p> -->
+              
+              <p>Price: {{i.price}} Rs</p>
+              <p>stock left: {{i.stock}}</p>
+            </figcaption>
+          </figure>
+        </li> 
+        {% empty %}
+    <h1 style="padding-top:100px; padding-right: 261px; color: red; font-weight: bold;">Nothing found</h1>
+  
+      {% endfor %}
+     
+      </ul>
+    </section>
+    
+    <hr class="btmspace-80">
+    <div class="clear"></div>
+  </main>
+</div>
+
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- <div class="bgded overlay row4" style="background-image:url({% static 'hm/images/demo/backgrounds/05.png' %});">
+
+</div> -->
+
+<!-- JAVASCRIPTS -->
+<script src="{% static 'hm/layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'hm/layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static 'hm/layout/scripts/jquery.mobilemenu.js' %}"></script>
+</body>
+</html>
+{% endblock %}

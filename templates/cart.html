@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'cr/cart.css' %}">
+    <!-- to get the below link google "Font Awesome - BootstrapCDN"       or    https://www.bootstrapcdn.com/fontawesome/ -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Shopping Cart</h1>
+        
+        <div class="cart" style="background-color: white;">
+
+         
+            <div class="products">
+        {% for i in ci %}   
+              <div class="product" style="height: 237px;">
+                
+            
+                <a href="{{i.prodt_name.get_url}}">
+                    <img src="{{i.prodt_name.img.url}}" alt="{{i.prodt_name.name}}" style="height: 237px; width: 237px;">
+                </a>
+                <div class="product-info">
+                <a href="{{i.prodt_name.get_url}}">
+                    <h3 class="product-name">{{i.prodt_name.name}}</h3>
+                </a>
+                    <h3 class="product-name">ID: {{i.prodt_name.id}}</h3>
+                    <h5 class="product-price"> Price : {{i.prodt_name.price}} 
+                        <span class="product-price" style="padding-left: 360px;">Total : ${{i.total}}</span>
+                    </h5>
+
+        
+                    <h5 class="product-offer">offer : 50%</h5>
+                 
+                    <!-- <p class="product-quantity">Qnt:<input value="1" name=""></p> -->
+                    <p>qnt:<a href="{% url 'cart_decrement' i.prodt_name.id %}">&nbsp;&nbsp;<i class="fa fa-minus" style="font-size: 16px;"></i></a>&nbsp;&nbsp;{{i.quantity}}&nbsp;&nbsp; <a href="{% url 'addcart' i.prodt_name.id %}"><i class="fa fa-plus" style="font-size: 16px;"></i></a></p>
+
+
+
+                    <!-- <div class="col-6" style="padding-right: 357px;">
+                        <ul class="pagination justify-content-end set-quantity">Qnt:
+                        <li class="page-item">
+                        <button class="page-link" onclick="decreaseNumber()"><i class="fa fa-minus"><a href="{% url 'cart_decrement' i.prodt_name.id %}"></a></i></button>
+                        </li>
+                        <li class="page-item"><input type="text" name="" class="page-link"  id="textbox" style="width: 29px; "></li>
+                        <li class="page-item">
+                            <button class="page-link" onclick="increaseNumber()"><i class="fa fa-plus"><a href="{% url 'addcart' i.prodt_name.id %}"></a></i></button>
+                        </li>
+
+                    </ul>
+                    </div> -->
+         
+
+                    <p class="product-remove">
+                        <!-- to get below link "https://fontawesome.com"  -->
+
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                        <a href="{% url 'remove' i.prodt_name.id %}"><span class="remove">Remove</span></a>
+
+                    </p>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            
+            
+        <div class="cart-total">
+            <p>
+                <span>Total Price</span>
+                <span>$ {{t}}</span>
+            </p>
+            <p>
+                <span>Number of Items</span>
+                <span>{{itc}}</span>
+            </p>
+            <p>
+                <span>You Save</span>
+                <span>$ 2,000</span>
+            </p>
+            <a href="#">Proceed to Checkout</a>
+        </div>
+    </div>
+</div>
+    
+</body>
+</html>
+{% endblock %}

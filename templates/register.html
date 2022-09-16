@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+  font-family: Calibri, Helvetica, sans-serif;
+  background-color: pink;
+}
+.container {
+    padding: 50px;
+    background-color: lightblue;
+}
+
+input[type=text], input[type=password], textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+input[type=text]:focus, input[type=password]:focus {
+  background-color: orange;
+  outline: none;
+}
+ div {
+            padding: 10px 0;
+         }
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.registerbtn:hover {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+<form action="register" method="post">
+  {% csrf_token %} 
+  <div class="container">
+  <center>  <h1>Register</h1> </center>
+  <hr>
+  <label> Firstname: </label><br>
+<input type="text" name="firstname" placeholder= "Firstname" size="50" required /> <br>
+<label> Lastname: </label> <br>
+<input type="text" name="lastname" placeholder="Lastname" size="50"required /><br>
+<label> Username: </label> <br>
+<input type="text" name="username" placeholder="Username" size="50"required /><br>
+<label for="email"><b>Email :</b></label><br>
+<input type="text" placeholder="Enter Email" name="email" size="50" required><br>
+<label for="psw"><b>password:<b></label><br>
+<input type="password" name="password1" placeholder="Enter password" size="45" required> <br>
+<label for="psw-repeat"><b>Re-type password<b></label> <br>
+<input type="password" name="password2" placeholder="Retype password"  size="45" required><br>
+<br>
+<button type="submit" name="button" class="registerbtn">Register</button>
+</form>
+<div>
+  {% for message in messages %}
+  <h4>{{message}}</h4>
+  {% endfor %}
+</div>
+</body>
+</html>
+{% endblock %}

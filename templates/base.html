@@ -1,0 +1,67 @@
+{% load static %}
+<html lang="">
+<!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
+<head>
+<title>Sislaf</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'hm/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+
+
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- Top Background Image Wrapper -->
+<!-- <div class="abcd" style="background-image:url({% static 'hm/images/demo/backgrounds/background.jpg' %});"> -->
+
+<!-- <div class="bgded overlay" style="background-image:url({% static 'hm/images/demo/backgrounds/bg.jpg' %});"> -->
+  <!-- ################################################################################################ -->
+  
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <div class="wrapper row1">
+    <header id="header" class="hoc clear">
+      <div id="logo" class="fl_left">
+        <!-- ################################################################################################ -->
+        <h1><a href="/">Avodha Shopping</a></h1>
+        <!-- ################################################################################################ -->
+      </div>
+      <nav id="mainav" class="fl_right">
+        <!-- ################################################################################################ -->
+        <ul class="clear">
+
+          <li class="active" ><a href="/">Home</a></li>
+        
+      
+          {% if user.is_authenticated %}
+          <li>Hai {{user.username}}</li>  
+          <li><a class="active" href="{% url 'logout' %}" style="color: white;">Logout</a></li>
+            {% if itc > 0%}
+          <li><a class="active" href="{% url 'cartDetails' %}" style="color: white;"><i class="fa fa-shopping-cart" style="font-size:20px;color:red"></i>{{itc}}</a></li>
+          {% else %}
+          <li><a class="active" href="{% url 'cartDetails' %}" style="color: white;"><i class="fa fa-shopping-cart" style="font-size:20px;color:red"></i></a></li>
+          {% endif %} 
+          {% else %} 
+          <li><a class="active" href="{%  url 'login' %}" style="color: white;">Login</a></li>
+          <li><a class="active" href="{% url 'register' %}" style="color: white;">Register</a></li>
+          {% endif %}
+          
+          <!-- <li><a class="active" href="accounts/login" style="color: white;">Logout</a></li> -->
+
+          
+          
+
+          </ul>    
+        </ul>
+        <!-- ################################################################################################ -->
+      </nav>
+    </header>
+  </div>
+  </div>
+  {% block content %}
+  {% endblock %}
+  </body>
+  </html>
